@@ -6,12 +6,12 @@ def nba_cup(result_sheet, to_find):
     a team marks 0 if it is a loss.
     Team Name:W=nb of wins;D=nb of draws;L=nb of losses;Scored=nb;Conceded=nb;Points=nb
     '''
-    if not to_find in result_sheet:
+    games = result_sheet.split(',')
+    if not re.search('\\b'+to_find+'\\b',result_sheet):
         return "{}:This team didn't play!".format(to_find)
     if to_find == '':
         return ''
 
-    games = result_sheet.split(',')
     matching = [s for s in games if to_find in s]
     teamsum = 0
     oppsum = 0
@@ -65,5 +65,6 @@ if __name__ == '__main__':
     r0="New York Knicks 101.12 Atlanta Hawks 112"
 
     print(nba_cup(r, "Los Angeles Clippers"))
-    print(nba_cup(r,'Boston Celts'))
+    print(nba_cup(r,'Boston Celt'))
     print(nba_cup(r0,'Atlanta Hawks'))
+    print(nba_cup(r, "Boston Celtics"))
